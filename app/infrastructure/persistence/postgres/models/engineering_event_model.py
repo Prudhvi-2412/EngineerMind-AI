@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from typing import Optional, Dict, Any
 import uuid
-from sqlalchemy import String, Integer, DateTime, ForeignKey, Text, UniqueConstraint
+from sqlalchemy import String, Integer, DateTime, ForeignKey, Text, UniqueConstraint, JSON
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import UUID as PG_UUID, JSONB
 from app.infrastructure.persistence.postgres.models.base import Base
@@ -19,7 +19,7 @@ class EngineeringEventModel(Base):
     event_id: Mapped[str] = mapped_column(String(255), nullable=False, unique=True, index=True)  # X-GitHub-Delivery GUID
     event_type: Mapped[str] = mapped_column(String(100), nullable=False, index=True)            # push, pull_request.opened, etc.
     source: Mapped[str] = mapped_column(String(50), nullable=False, default="github")
-    payload: Mapped[Dict[str, Any]] = mapped_column(JSONB, nullable=False)
+    payload: Mapped[Dict[str, Any]] = mapped_column(JSON().with_variant(JSONB, "postgresql"), nullable=False)
     status: Mapped[str] = mapped_column(String(50), nullable=False, default="RECEIVED", index=True) # RECEIVED, PROCESSING, PROCESSED, FAILED
     retry_count: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     error_message: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
