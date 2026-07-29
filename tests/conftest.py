@@ -5,7 +5,7 @@ from httpx import AsyncClient, ASGITransport
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from app.infrastructure.persistence.postgres.models.base import Base
 from app.api.dependencies.database_deps import get_db
-from main import app
+from app.main import app
 
 # In-memory SQLite for fast testing
 TEST_DATABASE_URL = "sqlite+aiosqlite:///:memory:"
