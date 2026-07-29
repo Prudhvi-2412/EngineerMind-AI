@@ -1,6 +1,17 @@
 from fastapi import APIRouter, Depends, status
 from neo4j import AsyncSession
-from app.api.schemas.agent_schemas import AnalyzePRRiskRequest, PRRiskResponse
+from app.api.schemas.agent_schemas import (
+    AnalyzePRRiskRequest,
+    PRRiskResponse,
+    AnalyzeArchitectureRequest,
+    ArchitectureReviewResponse,
+    AnalyzeSprintPredictionRequest,
+    SprintPredictionResponse,
+    PredictIncidentRequest,
+    IncidentPredictionResponse,
+    AnalyzeDeveloperInsightRequest,
+    DeveloperInsightResponse,
+)
 from app.application.agents.pr_risk_agent import build_pr_risk_agent
 from app.infrastructure.persistence.neo4j.connection import get_neo4j_session
 from app.api.dependencies.auth_deps import get_current_user
