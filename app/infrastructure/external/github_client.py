@@ -23,7 +23,7 @@ class GitHubApiClient:
             "User-Agent": "EngineeringOS-AI-App",
         }
         if self.token:
-            headers["Authorization"] = `Bearer ${self.token}` if self.token.startswith("ghp_") or self.token.startswith("ghs_") else f"Bearer {self.token}"
+            headers["Authorization"] = f"Bearer {self.token}"
         return headers
 
     def _check_rate_limit(self, response: httpx.Response):
