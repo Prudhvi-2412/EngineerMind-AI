@@ -63,7 +63,7 @@ export default function ArchitectureDashboardPage() {
             Detected Code Smells & God Classes
           </h3>
           <div className="space-y-3 text-xs">
-            {arch?.godClassesDetails.map((gc, i) => (
+            {arch?.godClassesDetails.map((gc: { file: string; loc: number; reason: string }, i: number) => (
               <div key={i} className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
                 <span className="text-indigo-300 font-mono font-semibold block">{gc.file}</span>
                 <p className="text-slate-400">Lines of Code: <span className="font-bold text-white">{gc.loc} LOC</span></p>
@@ -79,7 +79,7 @@ export default function ArchitectureDashboardPage() {
             Refactoring Recommendations
           </h3>
           <ul className="space-y-2.5 text-xs text-slate-300">
-            {arch?.recommendations.map((rec, i) => (
+            {arch?.recommendations.map((rec: string, i: number) => (
               <li key={i} className="flex items-start gap-2 p-3 rounded-xl bg-slate-950 border border-slate-800">
                 <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
                 <span>{rec}</span>

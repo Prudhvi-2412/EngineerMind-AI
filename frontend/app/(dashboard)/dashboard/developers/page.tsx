@@ -56,7 +56,7 @@ export default function DevelopersDashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {developers?.map((dev) => (
+        {developers?.map((dev: { email: string; name: string; role: string; ownership: string; workloadHours: number; burnoutRisk: string; burnoutScore: number; lateNightCommits: number; reviewQuality: number }) => (
           <div
             key={dev.email}
             className="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-4 hover:border-indigo-500/50 transition-all flex flex-col justify-between"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { Bot, Send, Sparkles, ShieldCheck, Database, GitPullRequest, Layers, Network, User } from "lucide-react";
 
@@ -36,8 +36,8 @@ export default function EngineeringChatPage() {
         ]
       };
     },
-    onSuccess: (data) => {
-      setMessages((prev) => [
+    onSuccess: (data: { assistant_response: string; grounded_evidence: Array<{ source: string; entity: string; fact: string }> }) => {
+      setMessages((prev: ChatMessage[]) => [
         ...prev,
         {
           id: `asst-${Date.now()}`,
@@ -56,7 +56,7 @@ export default function EngineeringChatPage() {
     const userText = query.trim();
     setQuery("");
 
-    setMessages((prev) => [
+    setMessages((prev: ChatMessage[]) => [
       ...prev,
       { id: `user-${Date.now()}`, sender: "user", text: userText },
     ]);
@@ -112,7 +112,7 @@ export default function EngineeringChatPage() {
 
       {/* Messages Stream */}
       <div className="flex-1 bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 overflow-y-auto space-y-6">
-        {messages.map((msg) => (
+        {messages.map((msg: ChatMessage) => (
           <div
             key={msg.id}
             className={`flex items-start gap-4 ${
@@ -147,7 +147,7 @@ export default function EngineeringChatPage() {
                     <ShieldCheck className="h-3.5 w-3.5" /> Cited Evidence ({msg.evidence.length})
                   </span>
                   <div className="space-y-1.5 text-xs">
-                    {msg.evidence.map((ev, i) => (
+                    {msg.evidence.map((ev: { source: string; entity: string; fact: string }, i: number) => (
                       <div key={i} className="p-2.5 rounded-xl bg-slate-950 border border-slate-800/80 font-mono">
                         <span className="text-indigo-400 font-bold">{ev.source}</span> ({ev.entity}):{" "}
                         <span className="text-slate-300">{ev.fact}</span>

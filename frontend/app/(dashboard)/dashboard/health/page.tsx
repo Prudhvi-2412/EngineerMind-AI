@@ -155,7 +155,7 @@ export default function EngineeringHealthDashboardPage() {
           </div>
 
           <div className="space-y-3">
-            {health?.topContributors.map((c, i) => (
+            {health?.topContributors.map((c: { name: string; email: string; commitsCount: number; prsMerged: number; impactScore: number }, i: number) => (
               <div
                 key={c.email}
                 className="p-4 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between hover:border-slate-700 transition-all"
@@ -193,7 +193,7 @@ export default function EngineeringHealthDashboardPage() {
           </div>
 
           <div className="space-y-3">
-            {health?.recentEvents.map((evt) => (
+            {health?.recentEvents.map((evt: { eventId: string; source: string; eventType: string; timestamp: string; summary: string }) => (
               <div
                 key={evt.eventId}
                 className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1 hover:border-slate-700 transition-all"

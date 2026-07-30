@@ -2,7 +2,7 @@
 # STAGE 1: Dependencies
 # ==========================================
 FROM node:18-alpine AS deps
-RUN apk add --no-libc6-compat libc6-compat
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json package-lock.json* ./

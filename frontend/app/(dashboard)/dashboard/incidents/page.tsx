@@ -70,7 +70,7 @@ export default function IncidentsDashboardPage() {
             Affected Cascading Scope
           </h3>
           <ul className="space-y-2 text-xs font-mono text-slate-300">
-            {incident?.affectedServices.map((svc) => (
+            {incident?.affectedServices.map((svc: string) => (
               <li key={svc} className="p-2.5 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-between">
                 <span>{svc}</span>
                 <span className="text-amber-400 font-bold">At Risk</span>
@@ -87,7 +87,7 @@ export default function IncidentsDashboardPage() {
           Recommended Automated SRE Mitigation Plan
         </h3>
         <div className="space-y-2.5">
-          {incident?.mitigationSteps.map((step, i) => (
+          {incident?.mitigationSteps.map((step: string, i: number) => (
             <div key={i} className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-200">
               <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
               <span>{step}</span>
