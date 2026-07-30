@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.v1.router import api_router
+from app.api.v1.endpoints.monitoring import router as monitoring_router
 from app.api.middleware.tenant_middleware import TenantMiddleware
 from app.infrastructure.persistence.postgres.connection import engine
 from app.infrastructure.persistence.postgres.models.base import Base
@@ -38,6 +39,9 @@ app.add_middleware(
 
 # Tenant Context Middleware
 app.add_middleware(TenantMiddleware)
+
+# Root Monitoring & Observability Endpoints (/healthz, /health/readiness, /metrics)
+app.include_router(monitoring_router)
 
 # Include API Router
 app.include_router(api_router, prefix=settings.API_V1_STR)
